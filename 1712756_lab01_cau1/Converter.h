@@ -32,22 +32,24 @@ namespace Converter
 		float red = 0.299;
 		float green = 0.587;
 		float blue = 0.114;
-		// Source image
+		// khởi tạo các biến thuộc sourceImage
 		int nrow = sourceImage.rows; 
 		int ncol = sourceImage.cols;
 		uchar* pSource = (uchar*)sourceImage.data;
 		int nChannel_S = sourceImage.step[1];
 		int widthStep_S = sourceImage.step[0];
-		// destination Image
+		// khởi tạo các biến thuộc destinationImage
 		uchar* pDes = (uchar*)destinationImage.data;
 		int nChannel_D = destinationImage.step[1];
 		int widthStep_D = destinationImage.step[0];
-
+		// Truy xuất đến các phần tử trong mảng
 		for (int j = 0; j<ncol; j++, pSource += widthStep_S, pDes += widthStep_D) {
+			//lấy con trỏ đầu mỗi dòng
 			uchar* pRow = pSource;
 			uchar* pRowDes = pDes;
 			for (int i = 0; i<nrow; i++, pRow+=nChannel_S, pRowDes+=nChannel_D) {
-				// xử lý trên mỗi pixel
+				// xử lý trên mỗi pixel 
+				//RGB[A] to Gray:Y←0.299⋅Red+0.587⋅Green+0.114⋅Blue
 				pRowDes[0] = pRow[0]*blue + pRow[1]*green +pRow[2]*red ;
 			}   
 		}
@@ -71,22 +73,24 @@ namespace Converter
 		float red = 0.299;
 		float green = 0.587;
 		float blue = 0.114;
-		// Source image
+		//khởi tạo các biến thuộc sourceImage
 		int nrow = sourceImage.rows; 
 		int ncol = sourceImage.cols;
 		uchar* pSource = (uchar*)sourceImage.data;
 		int nChannel_S = sourceImage.step[1];
 		int widthStep_S = sourceImage.step[0];
-		// destination Image
+		// khởi tạo các biến thuộc  destinationImage
 		uchar* pDes = (uchar*)destinationImage.data;
 		int nChannel_D = destinationImage.step[1];
 		int widthStep_D = destinationImage.step[0];
-
+		// Truy xuất đến các pixel
 		for (int j = 0; j<ncol; j++, pSource += widthStep_S, pDes += widthStep_D) {
+			//lấy con trỏ đầu mỗi dòng
 			uchar* pRow = pSource;
 			uchar* pRowDes = pDes;
 			for (int i = 0; i<nrow; i++, pRow+=nChannel_S, pRowDes+=nChannel_D) {
 				// xử lý trên mỗi pixel
+				//Gray to RGB[A]:R=Y*R,G=Y*G,B=Y*B
 				pRowDes[0]= pRow[0]*blue;
 				pRowDes[1]= pRow[0]*green;
 				pRowDes[2]= pRow[0]*red ;

@@ -20,11 +20,11 @@ Mat Mutiple_Mat(const Mat& a, const Mat& b)
 	{
 		for (int j = 0; j < b.cols; j++) 
 		{
-			pR[i * result.channels() + j]=0;
+			pR[i * result.cols() + j]=0;
 			for (int k = 0; k < a.cols; k++) 
 			{
 				//result[i][j] += mat_a[i][k] * mat_b[k][j];
-				pR[i * result.channels() + j] += pA[i * a.channels() + k] * pB[k * b.channels() + j];
+				pR[i * result.cols() + j] += pA[i * a.cols() + k] * pB[k * b.cols() + j];
             	
 			}
 		}
@@ -84,13 +84,7 @@ public:
 			float* pRow = temp.ptr<float>(i);
 			for (int j = 0; j < 3; j++,pRow += temp.channels()) 
 			{
-				 pRow[0]=0;
-			}
-		}
-		for (int i = 0; i < 3; i++) {
-			float* pRow = temp.ptr<float>(i);
-			for (int j = 0; j < 3; j++,pRow += temp.channels()) 
-			{
+				pRow[0]=0;
 				if(i==j) pRow[0]=1;
 			}
 		}
@@ -101,7 +95,7 @@ public:
 				if(j==2) pRow[0]=dx;
 			}
 		//  vị trí Mat[1][2] = dy
-		float* pRow = temp.ptr<float>(0);
+		float* pRow = temp.ptr<float>(1);
 		for (int j = 0; j < 3; j++,pRow += temp.channels()) 
 			{
 				if(j==2) pRow[0]=dy;

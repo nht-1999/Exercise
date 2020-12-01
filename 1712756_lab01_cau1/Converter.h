@@ -81,7 +81,7 @@ namespace Converter
 		int widthStep_S = sourceImage.step[0];
 		// khởi tạo các biến thuộc  destinationImage
 		uchar* pDes = (uchar*)destinationImage.data;
-		int nChannel_D = destinationImage.step[1];
+		int nChannel_D = nChannel_S;//theo như thầy nói thì kênh màu của ảnh cần chuyển có cùng số nChanel với ảnh xám
 		int widthStep_D = destinationImage.step[0];
 		// Truy xuất đến các pixel
 		for (int j = 0; j<ncol; j++, pSource += widthStep_S, pDes += widthStep_D) {

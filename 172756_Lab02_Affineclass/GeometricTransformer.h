@@ -20,11 +20,11 @@ Mat Mutiple_Mat(const Mat& a, const Mat& b)
 	{
 		for (int j = 0; j < b.cols; j++) 
 		{
-			pR[i * result.cols() + j]=0;
+			pR[i * result.cols + j]=0;
 			for (int k = 0; k < a.cols; k++) 
 			{
 				//result[i][j] += mat_a[i][k] * mat_b[k][j];
-				pR[i * result.cols() + j] += pA[i * a.cols() + k] * pB[k * b.cols() + j];
+				pR[i * result.cols + j] += pA[i * a.cols + k] * pB[k * b.cols + j];
             	
 			}
 		}
